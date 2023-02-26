@@ -60,8 +60,8 @@ vim.keymap.set("n", "<S-l>", "<Plug>(cokeline-focus-next)<CR>")
 -- vim.keymap.set("n", "<C-l>", "<Plug>(cokeline-switch-next)<CR>")
 
 for i = 1, 9 do
-	vim.keymap.set("n", ("<A-%s>"):format(i), ("<Plug>(cokeline-focus-%s)"):format(i), { silent = true })
-	vim.keymap.set("n", ("<Leader>%s"):format(i), ("<Plug>(cokeline-switch-%s)"):format(i), { silent = true })
+  vim.keymap.set("n", ("<A-%s>"):format(i), ("<Plug>(cokeline-focus-%s)"):format(i), { silent = true })
+  vim.keymap.set("n", ("<Leader>%s"):format(i), ("<Plug>(cokeline-switch-%s)"):format(i), { silent = true })
 end
 -- BetterEscape
 -- In /setups/betterescape.lua
@@ -96,3 +96,6 @@ vim.keymap.set("n", "gP", "<cmd>lua require('goto-preview').goto_preview_referen
 
 -- Symbols Outlines
 vim.keymap.set("n", "<leader><leader>", "<cmd>SymbolsOutline<cr>", opts)
+
+-- Nvim Tree
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", opts)

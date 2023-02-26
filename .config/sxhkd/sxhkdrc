@@ -5,10 +5,16 @@
 # terminal emulator
 
 super + Return
-	/usr/bin/kitty
+	/usr/bin/alacritty
 
 super + o ; {f}
 	firefox
+
+super + o ; {s}
+	spotify
+  
+super + o ; {v}
+	viber
   
 # make sxhkd reload its configuration files:
 super + Escape
@@ -75,7 +81,7 @@ super + {_,shift + }c
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev,next}.local
+	bspc desktop -f {prev,next}.local && notify-send "Desktop: $(bspc query -D -d focused --names)" -r 1000 -a "Desktop Changed!" -i '/home/chilly/Images/assets/desktop.png' -t 700
 
 # focus the last node/desktop
 # super + {grave,Tab}
@@ -120,10 +126,10 @@ XF86MonBrightness{Up,Down}
   brightnessctl s 10%{+,-}  
 
 XF86Audio{Raise,Lower}Volume  
-  pamixer {-i,-d}10
+  pamixer {-i,-d}10 && notify-send -a "Volume Level:" "$( pamixer --get-volume-human )" -i "/home/chilly/Images/assets/volume.png" -t 5000 -r 8880
  
 XF86AudioMute  
-  pamixer  -t
+  pamixer -t && notify-send -a "Volume Level:" "$( pamixer --get-volume-human )" -i "/home/chilly/Images/assets/volume.png" -t 5000 -r 8880
 
 XF86AudioPlay  
   playerctl play-pause
@@ -134,10 +140,29 @@ XF86AudioNext
 XF86AudioPrev  
   playerctl previous
 
-
 super + alt + p
 	bspc config focus_follows_pointer {true,false}
 
+super + alt + b
+  notify-send -a "Battery Level:" "$( cat /sys/class/power_supply/BAT0/capacity )%" -i "/home/chilly/Images/assets/battery.png" -t 5000 -r 8881
+
+super + alt + t
+  notify-send -a "Current Time:" "$( date +'%l:%M:%S %P')" -i "/home/chilly/Images/assets/clock.png" -t 5000 -r 8881
+
+super + alt + d
+  notify-send -a "Current Date:" "$( date +'%A, %B %d')" -i "/home/chilly/Images/assets/clock.png" -t 5000 -r 8881
+  
+Print
+  escrotum -s -C && notify-send -a "Screenshot" "Screenshot saved to the clipboard!" -t 5000 -r 8872
+
+ctrl + Print
+  escrotum -s ~/Images/screenshot/%Y-%m-%d-%H:%M:%S_$wx$h.png && notify-send -a "Screenshot" "Screenshot saved!" -t 5000 -r 8872
+  
+super + Print
+  escrotum -C && notify-send -a "FullScreen Screenshot" "Screenshot saved to the clipboard!" -t 5000 -r 8872
+  
+ctyl + super + Print
+  escrotum ~/Images/screenshot/%Y-%m-%d-%H:%M:%S_$wx$h.png && notify-send -a "FullScreen Screenshot" "Screenshot saved!" -t 5000 -r 8872
 #
 # move/resize
 #

@@ -26,12 +26,9 @@ bspc config pointer_action3 resize_corner
 bspc config normal_border_color '#20202a'
 bspc config active_border_color '#4c5664'
 
-#bspc rule -a Gimp desktop='^8' state=floating follow=on
-#bspc rule -a Chromium desktop='^2'
 bspc rule -a firefox:Picture-in-picture state=floating
 bspc rule -a Zathura state=tiled
 bspc rule -a scpad state=floating sticky=on rectangle=1800x1000+60+50
-#bspc rule -a Kupfer.py focus=on
-#bspc rule -a Screenkey manage=off
-hsetroot -solid "#13131A"
-# feh --bg-fill ~/Images/walls/cw.png
+hsetroot -solid "#1a1f26"
+notify-send "Bspwm loaded!" -a "bspwmrc"
+picom &

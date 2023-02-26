@@ -5,7 +5,7 @@ local comments_fg = get_hex("Comment", "fg")
 local errors_fg = "#B7435E"
 local warnings_fg = "#d1ba97"
 
-local bg = "#20202A"
+local bg = "#2e3440"
 local red = "#cc9b9d"
 local yellow = "#E8CCA7"
 -- local green = "#a3ccad"

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# Set the file name as the first argument
+file="$1"
+
+# Get the mimetype of the file
+mimetype="$(file -b --mime-type "$file")"
+
+# Launch the file based on the mimetype
+case "$mimetype" in
+    "text/"*)                   # plain text file
+        nvim "$file"
+        ;;
+    "image/"*)
+        devour feh "$file" &
+        ;;
+    "video/"* | "audio/"*)   # multimedia file
+        devour mpv "$file" &
+        ;;
+    "application/pdf")              # PDF file
+        devour zathura "$file" &
+        ;;
+    "application/msword" | "application/vnd.openxmlformats-officedocument.wordprocessingml.document" | "application/vnd.ms-excel" | "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" | "application/vnd.ms-powerpoint" | "application/vnd.openxmlformats-officedocument.presentationml.presentation") # PowerPoint presentation
+        devour onlyoffice-desktopeditors --force-use-tab "./$file"
+        ;;
+    *)                              # unknown file type
+        echo "Unknown file type: $mimetype"
+        ;;
+esac

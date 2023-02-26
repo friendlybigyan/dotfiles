@@ -1,3 +1,6 @@
+export FZF_DEFAULT_OPTS="-m --cycle --border=rounded --border-label='ﲖ  ﲕ ' --color='gutter:-1,bg+:black,border:black,label:0,hl:9,hl+:9,fg+:6,pointer:1,prompt:3' --padding=5%,5% --margin=10%,10% --pointer=' ' --marker=' ' --prompt='  ' --info=inline:'  ' --separator='' "
+
+# 
 # autoexecute startx
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
     exec startx
@@ -29,7 +32,7 @@ export KEYTIMEOUT=1
 
 # - Plugins
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+source ~/.config/zsh/plugins/typewritten/typewritten.plugin.zsh
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 source ~/.config/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
@@ -38,7 +41,7 @@ source ~/.config/zsh/plugins/fzf-tab/fzf-tab.plugin.zsh
 source ~/.config/zsh/plugins/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh
 
 # - Aliases
-alias n='sh ~/Scripts/nvim-kitty.sh'
+alias n='nvim'
 # alias nvim='sh ~/Scripts/nvim-kitty.sh'
 alias ls='exa --color=auto'
 alias ll='exa -l --color=auto'
@@ -52,18 +55,17 @@ alias zc='n ~/.config/zsh/.zshrc'
 alias map='n ~/.config/sxhkd/sxhkdrc'
 alias picrc='n ~/.config/picom/picom.conf'
 alias bsprc='n ~/.config/bspwm/bspwmrc'
-alias ktheme='kitty +kitten themes'
 alias study='sudo ffocus -p study'
-alias kim='kitty +kitten icat'
 alias tree='exa icat'
 alias op='sh ~/Scripts/launch'
 
 function gt() {
-    cd $( (cat ~/Scripts/data/dirpaths.txt && cat ~/Scripts/data/dirpathshid.txt) | fzf --ansi )
+    cd $( (cat ~/Scripts/data/dirpaths.txt ) | fzf --ansi )
 }
 
 function of() {
-    launch $(cat ~/Scripts/data/filepaths.txt| fzf --ansi)
+  
+  launch $( (cat ~/Scripts/data/filepaths.txt )| fzf --ansi )
 }
 
 # Change cursor shape for different vi modes.
@@ -104,3 +106,5 @@ eval "$(zoxide init --cmd cd zsh)"
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 sudo dbus-daemon --system &> /dev/null
+
+export LS_COLORS="*.png=1;33:*.jpg=1;33"
