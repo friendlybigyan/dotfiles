@@ -32,7 +32,8 @@ export KEYTIMEOUT=1
 
 # - Plugins
 
-source ~/.config/zsh/plugins/typewritten/typewritten.plugin.zsh
+
+source ~/.config/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
 source ~/.config/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.config/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 source ~/.config/zsh/plugins/zsh-completions/zsh-completions.plugin.zsh
@@ -56,7 +57,7 @@ alias map='n ~/.config/sxhkd/sxhkdrc'
 alias picrc='n ~/.config/picom/picom.conf'
 alias bsprc='n ~/.config/bspwm/bspwmrc'
 alias study='sudo ffocus -p study'
-alias tree='exa icat'
+alias tree='exa --tree -L 3'
 alias op='sh ~/Scripts/launch'
 
 function gt() {
@@ -95,16 +96,14 @@ PS1='%B%F{yellow}%~%f%b > '
 autoload -Uz compinit
 compinit
 _comp_options+=(globdots)
-
 # End of lines added by compinstall
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
+# 
 eval "$(zoxide init --cmd cd zsh)"
+
+sudo dbus-daemon --system &> /dev/null
+
+# export LS_COLORS="*.png=1;33:*.jpg=1;33"
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-sudo dbus-daemon --system &> /dev/null
-
-export LS_COLORS="*.png=1;33:*.jpg=1;33"

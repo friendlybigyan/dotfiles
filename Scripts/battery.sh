@@ -25,6 +25,6 @@ if [ $BATTERY_LEVEL -gt 85 ] && [ $BATTERY_DISCHARGING -eq 0 ] && [ ! -f $FULL_F
     touch $FULL_FILE
     # If the battery is low and is not charging (and has not shown notification yet)
 elif [ $BATTERY_LEVEL -le $WARNING_LEVEL ] && [ $BATTERY_DISCHARGING -eq 1 ] && [ ! -f $EMPTY_FILE ]; then
-    notify-send -a "Battery Low!" "${BATTERY_LEVEL}% of battery remaining." --icon="/home/chilly/Images/assets/battery-low.png" -r 9991
+    notify-send -a "Battery Low!" "${BATTERY_LEVEL}% of battery remaining." --icon="/home/chilly/Images/assets/battery-low.png" -u critical -r 9991
     touch $EMPTY_FILE
 fi

@@ -311,14 +311,15 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#1E222A"
+    # background = "#14171F" # #242933 #1D2129
+    background = "#242933"
     foreground = "#d8dee9"
     timeout = 10
     # Icon for notifications with low urgency, uncomment to enable
     default_icon = /home/chilly/Images/assets/icons8-bell-50.png
 
 [urgency_normal]
-    background = "#1E222A"
+    background = "#242933"
     foreground = "#d8dee9"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable

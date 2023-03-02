@@ -81,7 +81,7 @@ super + {_,shift + }c
 
 # focus the next/previous desktop in the current monitor
 super + bracket{left,right}
-	bspc desktop -f {prev,next}.local && notify-send "Desktop: $(bspc query -D -d focused --names)" -r 1000 -a "Desktop Changed!" -i '/home/chilly/Images/assets/desktop.png' -t 700
+	bspc desktop -f {prev,next}.local && notify-send "Desktop: $(bspc query -D -d focused --names)" -r 1000 -a "Desktop Changed" -i '/home/chilly/Images/assets/desktop.png' -t 700
 
 # focus the last node/desktop
 # super + {grave,Tab}
@@ -95,7 +95,7 @@ super + bracket{left,right}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}'
+	bspc {desktop -f,node -d} '^{1-9,10}' && notify-send "Desktop: $(bspc query -D -d focused --names)" -r 1000 -a "Desktop Changed" -i '/home/chilly/Images/assets/desktop.png' -t 700
 
 #
 # preselect
@@ -147,7 +147,7 @@ super + alt + b
   notify-send -a "Battery Level:" "$( cat /sys/class/power_supply/BAT0/capacity )%" -i "/home/chilly/Images/assets/battery.png" -t 5000 -r 8881
 
 super + alt + t
-  notify-send -a "Current Time:" "$( date +'%l:%M:%S %P')" -i "/home/chilly/Images/assets/clock.png" -t 5000 -r 8881
+  notify-send -a "Current Time:" "$( date +'%l:%M %P')" -i "/home/chilly/Images/assets/clock.png" -t 5000 -r 8881
 
 super + alt + d
   notify-send -a "Current Date:" "$( date +'%A, %B %d')" -i "/home/chilly/Images/assets/clock.png" -t 5000 -r 8881
@@ -179,7 +179,6 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
   
-  
 # Smart resize, will grow or shrink depending on location.
 # Will always grow for floating nodes.
 super + ctrl + alt + {Left,Down,Up,Right}
@@ -190,3 +189,6 @@ super + ctrl + alt + {Left,Down,Up,Right}
    , d1=right;  d2=left;   dx=$n;  dy=0;   \
    } \
    bspc node --resize $d1 $dx $dy || bspc node --resize $d2 $dx $dy
+   
+super + space  
+  sh ~/Scripts/scpad.sh
